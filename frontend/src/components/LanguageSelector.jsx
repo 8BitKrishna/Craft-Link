@@ -39,10 +39,10 @@ export default function LanguageSelector() {
       <button
         type='button'
         onClick={() => setIsOpen(!isOpen)}
-        className='inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 hover:bg-stone-100 text-stone-800 border border-stone-200 shadow-xs transition-all'
+        className='inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 dark:bg-[#131B2A] hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-800 dark:text-stone-200 border border-stone-200 dark:border-stone-700/80 shadow-xs transition-all'
         title='Select Indian Regional Language'
       >
-        <Globe className='w-3.5 h-3.5 text-[#C85A32]' />
+        <Globe className='w-3.5 h-3.5 text-[#C85A32] dark:text-amber-400' />
         <span className='font-serif font-bold'>{currentLang.native}</span>
         <ChevronDown className={'w-3 h-3 text-stone-400 transition-transform ' + (isOpen ? 'rotate-180' : '')} />
       </button>
@@ -54,16 +54,16 @@ export default function LanguageSelector() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className='absolute right-0 mt-2 w-72 sm:w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-stone-200/90 p-3 z-50 space-y-2'
+            className='absolute right-0 mt-2 w-72 sm:w-80 bg-white/95 dark:bg-[#131B2A]/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-stone-200/90 dark:border-stone-700/90 p-3 z-50 space-y-2'
           >
-            <div className='flex items-center justify-between px-2 py-1 border-b border-stone-100'>
+            <div className='flex items-center justify-between px-2 py-1 border-b border-stone-100 dark:border-stone-800'>
               <div>
-                <div className='text-xs font-bold font-serif text-stone-900'>Select Regional Language</div>
+                <div className='text-xs font-bold font-serif text-stone-900 dark:text-stone-100'>Select Regional Language</div>
                 <div className='text-[10px] text-stone-400 font-sans'>11 Official Indian Regional Languages</div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className='p-1 text-stone-400 hover:text-stone-700 rounded-lg'
+                className='p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-lg'
               >
                 <X className='w-3.5 h-3.5' />
               </button>
@@ -82,19 +82,19 @@ export default function LanguageSelector() {
                     }}
                     className={'w-full text-left px-3 py-2 rounded-xl flex items-center justify-between transition-all ' + (
                       isSelected
-                        ? 'bg-amber-50 border border-[#C85A32]/40 text-[#C85A32]'
-                        : 'hover:bg-stone-50 text-stone-700'
+                        ? 'bg-amber-50 dark:bg-amber-950/60 border border-[#C85A32]/40 text-[#C85A32] dark:text-amber-300'
+                        : 'hover:bg-stone-50 dark:hover:bg-stone-800/80 text-stone-700 dark:text-stone-300'
                     )}
                   >
                     <div>
                       <div className='text-xs font-bold font-serif'>
-                        {item.native} <span className='text-[11px] font-sans font-normal text-stone-500'>({item.name})</span>
+                        {item.native} <span className='text-[11px] font-sans font-normal text-stone-500 dark:text-stone-400'>({item.name})</span>
                       </div>
                       <div className='text-[9.5px] text-stone-400 font-sans'>{item.region}</div>
                     </div>
 
                     {isSelected && (
-                      <div className='w-5 h-5 rounded-full bg-[#C85A32] text-white flex items-center justify-center shrink-0'>
+                      <div className='w-5 h-5 rounded-full bg-[#C85A32] dark:bg-amber-500 text-white dark:text-stone-950 flex items-center justify-center shrink-0'>
                         <Check className='w-3 h-3' />
                       </div>
                     )}

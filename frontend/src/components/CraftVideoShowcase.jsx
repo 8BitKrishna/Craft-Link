@@ -10,87 +10,87 @@ import LiquidGlassCard from './LiquidGlassCard';
 export const CRAFT_VIDEOS = [
   {
     id: 'blue-pottery-jaipur',
-    title: '????? ?? ???????? \'???? ?????\' ?? ???? ?? ?????? ?? ?????',
+    title: 'जयपुर की विश्वप्रसिद्ध नीली मिट्टी (Blue Pottery) की कला व निर्माण',
     englishTitle: 'Jaipur Blue Pottery: The 400-Year Persian-Rajput Quartz Craft',
     channel: 'BBC Hindi & Culturebox',
-    language: '?????? (Hindi)',
+    language: 'हिन्दी (Hindi)',
     duration: '12:45',
     region: 'Jaipur, Rajasthan',
     category: 'Pottery & Ceramics',
     tag: 'GI Tag Heritage',
     thumbnail: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=800&q=80',
     youtubeSearchUrl: 'https://www.youtube.com/results?search_query=Jaipur+Blue+Pottery+making+in+Hindi',
-    description: '????? ???? ???? ?????? ?? ????? ????????? ?????, ????????? ???? ?? ??????? ???? ????? ?? ????? ???? ?? ????????????? ????? ???? ??????'
+    description: 'जानिए कैसे बिना मिट्टी के केवल क्वार्ट्ज पत्थर, प्राकृतिक गोंद और तांबे के रंगों से तैयार होता है राजस्थान का गौरवशाली ब्लू पॉटरी।'
   },
   {
     id: 'dhokra-bastar',
-    title: '????? ????? ?????: 4000 ??? ?????? ?????-????? ???? ???',
+    title: 'बस्तर ढोकरा शिल्प: 4000 वर्ष प्राचीन लॉस्ट-वैक्स कांस्य कला',
     englishTitle: 'Bastar Dhokra: The 4,000-Year Ancient Lost-Wax Bronze Craft',
     channel: 'Shades of Rural India / Aditya Birla Kaarigari',
-    language: '?????? (Hindi)',
+    language: 'हिन्दी (Hindi)',
     duration: '15:20',
     region: 'Bastar, Chhattisgarh',
     category: 'Tribal Metal Craft',
     tag: 'Ancient Bronze Age',
     thumbnail: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=800&q=80',
     youtubeSearchUrl: 'https://www.youtube.com/results?search_query=Bastar+Dhokra+art+making+in+Hindi',
-    description: '????? ???? ?????? ?? ??????? ???? ?? ???? ?? ??, ????? ???? ????? ?? ??????? ?????? ???????? ?? ??? ?? ????? ?????????? ????? ????'
+    description: 'मोहन जोदड़ो कालीन नृत्यांगना शैली से जुड़ी ढोकरा धातु कला, जिसे आज भी बस्तर के आदिवासी कारीगर मोम व मिट्टी की सांचों से ढालते हैं।'
   },
   {
     id: 'banarasi-silk',
-    title: '?????? ????? ?? ??????: ?????? ? ???? ???? ?? ?????',
+    title: 'बनारसी साड़ियों की बुनाई: कढ़वा व शुद्ध ज़री का जादू',
     englishTitle: 'Banarasi Handloom Silk: Heritage Kadwa Weaving & Pure Zari',
     channel: 'Doordarshan Heritage Hindi',
-    language: '?????? (Hindi)',
+    language: 'हिन्दी (Hindi)',
     duration: '18:10',
     region: 'Varanasi, Uttar Pradesh',
     category: 'Handloom & Textiles',
     tag: 'GI Protected Silk',
     thumbnail: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
     youtubeSearchUrl: 'https://www.youtube.com/results?search_query=Banarasi+Saree+weaving+documentary+hindi',
-    description: '?? ?????? ????? ?? ????? ???? ??? 3 ?? 6 ????? ?? ??? ???? ??? ????? ???? ?? ??????? ?? ?????-??-????? ???????'
+    description: 'एक असली बनारसी साड़ी को तैयार करने में 3 से 6 महीने का समय और सैकड़ों वर्षों की पीढ़ी-दर-पीढ़ी विरासत।'
   },
   {
     id: 'channapatna-toys',
-    title: '????????? ??????: 100% ????????? ????? ?? ????? ?? ???????',
+    title: 'चेन्नापटनम खिलौने: 100% प्राकृतिक लाख व लकड़ी का चमत्कार',
     englishTitle: 'Channapatna Wooden Craft: Eco-Friendly Lacquer Toys',
     channel: 'Epic On India / The Better India Hindi',
-    language: '?????? (Hindi)',
+    language: 'हिन्दी (Hindi)',
     duration: '10:35',
     region: 'Channapatna, Karnataka',
     category: 'Woodwork & Lacquer',
     tag: 'Zero Chemical Woodcraft',
     thumbnail: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=80',
     youtubeSearchUrl: 'https://www.youtube.com/results?search_query=Channapatna+wooden+toys+making+in+Hindi',
-    description: '???? ??????? ?? ??? ?? ??? ? ??? ????? ????? ?? ?????-?????? ???? ????????? ????? ?? ??? ??????? ?? ?????? ???????'
+    description: 'टीपू सुल्तान के समय से शुरू हुई प्राकृतिक रंगों और हाथी-दांत की लकड़ी जैसी सुरक्षित खिलौनों की निर्माण कला।'
   },
   {
     id: 'pashmina-kashmir',
-    title: '???? ??????? ??????? ? ????? ???-????? ?? ?????',
+    title: 'कश्मीरी पश्मीना शॉल व सोज़नी सुई-कढ़ाई की कहानी',
     englishTitle: 'Kashmiri Pashmina & Sozni Needle Embroidery Masterclass',
     channel: 'Kashmir Craft Lineage',
-    language: '?????? (Hindi)',
+    language: 'हिन्दी (Hindi)',
     duration: '14:05',
     region: 'Srinagar, Jammu & Kashmir',
     category: 'Handloom & Embroidery',
     tag: 'GI Certified Pashmina',
     thumbnail: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80',
     youtubeSearchUrl: 'https://www.youtube.com/results?search_query=Kashmiri+Pashmina+making+process+in+Hindi',
-    description: '?????? ?? ????????? ??????? ?? ???? ?? ?? ???? ??????? ?? ???? ????? ????? ?? ??????? ???????? ?? ?????'
+    description: 'लद्दाख के चांगथांगी बकरियों के ऊन से लेकर पश्मीना बुनने और महीन सुई-सोज़नी से सजाने की पूरी प्रक्रिया।'
   },
   {
     id: 'ai-digital-artisan',
-    title: 'AI ?? ?????? ??????: ????? ?? ?????? ???????? ?? ?????????',
+    title: 'AI से सशक्त कारीगर: भारत के ग्रामीण कलाकारों का डिजिटलीकरण',
     englishTitle: 'AI & Digital India: Empowering Rural Artisans for Global Markets',
-    channel: 'Digital India & Smart India Hackathon',
-    language: '?????? (Hindi)',
-    duration: '11:50',
-    region: 'Pan-India ODOP Clusters',
-    category: 'AI & Digital Empowerment',
-    tag: 'SIH 2026 Vision',
-    thumbnail: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=80',
-    youtubeSearchUrl: 'https://www.youtube.com/results?search_query=Digital+India+artisan+empowerment+ODOP+Hindi',
-    description: '????????? AI ????? ?? ?????? ???????????? ?? ???? ????????? ?? ???? ???? ???????? ?? ??????? ?? ?????? ?????'
+    channel: 'Digital India & Karigar Hub',
+    language: 'हिन्दी (Hindi)',
+    duration: '09:40',
+    region: 'Pan-India Clusters',
+    category: 'Innovation & Tech',
+    tag: 'Multimodal AI Vision',
+    thumbnail: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80',
+    youtubeSearchUrl: 'https://www.youtube.com/results?search_query=Indian+artisans+digital+marketplace+empowerment+hindi',
+    description: 'कैसे मल्टीमॉडल AI भारतीय कारीगरों की भाषा, कागजी बाधाओं और बिचौलियों को समाप्त कर उन्हें सीधे खरीदारों से जोड़ता है।'
   }
 ];
 
@@ -142,8 +142,8 @@ export default function CraftVideoShowcase() {
             onClick={() => setActiveCategory(cat)}
             className={'px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ' + (
               activeCategory === cat
-                ? 'bg-stone-900 text-white shadow-sm'
-                : 'bg-white/80 hover:bg-stone-100 text-stone-600 border border-stone-200'
+                ? 'bg-stone-900 dark:bg-amber-500 text-white dark:text-stone-950 shadow-sm'
+                : 'bg-white/90 dark:bg-[#131B2A] hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-800'
             )}
           >
             {cat}
@@ -155,7 +155,7 @@ export default function CraftVideoShowcase() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredVideos.map((video, idx) => (
           <ScrollReveal key={video.id} delay={idx * 0.08}>
-            <LiquidGlassCard className="rounded-3xl overflow-hidden h-full flex flex-col group border border-stone-200/80">
+            <div className="bg-white dark:bg-[#131B2A] rounded-3xl overflow-hidden h-full flex flex-col group border border-stone-200/90 dark:border-stone-800 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
               {/* Thumbnail Container */}
               <div className="relative aspect-video w-full overflow-hidden bg-stone-900">
                 <img
@@ -197,24 +197,24 @@ export default function CraftVideoShowcase() {
               </div>
 
               {/* Video Info Content */}
-              <div className="p-5 flex flex-col justify-between flex-grow space-y-3 bg-white/70">
+              <div className="p-5 flex flex-col justify-between flex-grow space-y-3 bg-white/70 dark:bg-transparent">
                 <div className="space-y-1.5">
-                  <div className="text-[11px] font-bold text-red-600 flex items-center gap-1">
-                    <Youtube className="w-3 h-3 fill-red-600" />
-                    <span>{video.channel} ? {video.language}</span>
+                  <div className="text-[11px] font-bold text-red-600 dark:text-red-400 flex items-center gap-1">
+                    <Youtube className="w-3.5 h-3.5 fill-red-600 dark:fill-red-400" />
+                    <span>{video.channel} • {video.language}</span>
                   </div>
 
-                  <h3 className="font-serif font-bold text-base text-stone-900 line-clamp-2 leading-snug group-hover:text-[#C85A27] transition-colors">
+                  <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 line-clamp-2 leading-snug group-hover:text-[#C85A27] dark:group-hover:text-amber-400 transition-colors">
                     {video.title}
                   </h3>
 
-                  <p className="text-xs text-stone-500 line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-stone-500 dark:text-stone-400 line-clamp-2 leading-relaxed font-sans">
                     {video.description}
                   </p>
                 </div>
 
                 {/* Bottom Direct Links */}
-                <div className="pt-2 flex items-center justify-between border-t border-stone-100 text-xs">
+                <div className="pt-2 flex items-center justify-between border-t border-stone-100 dark:border-stone-800 text-xs">
                   <span className="text-[11px] text-stone-400 font-mono">
                     {video.category}
                   </span>
@@ -223,14 +223,14 @@ export default function CraftVideoShowcase() {
                     href={video.youtubeSearchUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 font-bold text-red-600 hover:text-red-700 hover:underline"
+                    className="inline-flex items-center gap-1 font-bold text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:underline"
                   >
                     <span>Watch in Hindi</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
               </div>
-            </LiquidGlassCard>
+            </div>
           </ScrollReveal>
         ))}
       </div>
