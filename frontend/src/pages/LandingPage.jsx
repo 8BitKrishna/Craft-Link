@@ -13,6 +13,8 @@ import AnimatedCounter from '../components/AnimatedCounter';
 import CraftVideoShowcase from '../components/CraftVideoShowcase';
 import ArtisanAudioStoryteller from '../components/ArtisanAudioStoryteller';
 import CraftTextureInspector from '../components/CraftTextureInspector';
+import InteractiveCraftMap from '../components/InteractiveCraftMap';
+import NaturalPaletteInspector from '../components/NaturalPaletteInspector';
 import { FALLBACK_PRODUCTS } from '../data/seedProductsFallback';
 
 export const CRAFT_CATEGORIES = [
@@ -286,10 +288,16 @@ export default function LandingPage() {
         </ScrollReveal>
       </section>
 
-      {/* 5. ARTISAN AUDIO STORYTELLER */}
+      {/* 5. INTERACTIVE GEOGRAPHIC CRAFT MAP */}
+      <InteractiveCraftMap />
+
+      {/* 6. LIVING HERITAGE NATURAL PALETTE INSPECTOR */}
+      <NaturalPaletteInspector />
+
+      {/* 7. ARTISAN AUDIO STORYTELLER */}
       <ArtisanAudioStoryteller />
 
-      {/* 6. 360° TEXTURE & WEAVE MICRO-INSPECTOR */}
+      {/* 8. 360° TEXTURE & WEAVE MICRO-INSPECTOR */}
       <CraftTextureInspector />
 
       {/* 7. LIVE MARKETPLACE CURATION */}
