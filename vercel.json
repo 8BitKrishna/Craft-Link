@@ -1,11 +1,11 @@
 {
-  "buildCommand": "cd frontend && npm install && npm run build",
+  "buildCommand": "npm run build --prefix frontend",
   "outputDirectory": "frontend/dist",
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/((?!assets/|favicon\\.png|icon\\.png|logo\\.png|logo\\.jpg|.*\\..*).*)",
-      "destination": "/index.html"
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }

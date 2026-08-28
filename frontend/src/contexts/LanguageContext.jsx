@@ -4,10 +4,20 @@ import { translations } from '../data/translations';
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
-  const [lang, setLang] = useState(() => localStorage.getItem('karigar_lang') || 'en');
+  const [lang, setLang] = useState(() => {
+    try {
+      return localStorage.getItem('karigar_lang') || 'en';
+    } catch (e) {
+      return 'en';
+    }
+  });
 
   useEffect(() => {
-    localStorage.setItem('karigar_lang', lang);
+    try {
+      localStorage.setItem('karigar_lang', lang);
+    } catch (e) {
+      console.warn('Storage write restricted:', e);
+    }
   }, [lang]);
 
   const t = (key) => {

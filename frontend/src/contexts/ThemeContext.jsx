@@ -4,20 +4,27 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem('craftlink_theme');
-    if (saved) return saved;
-    // Default to light (warm craft theme for rural artisans, switchable to sleek obsidian dark for urban collectors)
+    try {
+      const saved = localStorage.getItem('craftlink_theme');
+      if (saved) return saved;
+    } catch (e) {
+      console.warn('Storage access restricted:', e);
+    }
     return 'light';
   });
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
+    try {
+      const root = document.documentElement;
+      if (theme === 'dark') {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
+      localStorage.setItem('craftlink_theme', theme);
+    } catch (e) {
+      console.warn('Storage write restricted:', e);
     }
-    localStorage.setItem('craftlink_theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {

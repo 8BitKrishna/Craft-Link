@@ -5,8 +5,13 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    const saved = localStorage.getItem('karigar_user');
-    return saved ? JSON.parse(saved) : {
+    try {
+      const saved = localStorage.getItem('karigar_user');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {
+      console.warn('Storage read restricted:', e);
+    }
+    return {
       id: 'artisan-ramesh-01',
       name: 'Ramesh Kumawat',
       email: 'artisan@karigarsetu.in',
@@ -17,14 +22,24 @@ export const AuthProvider = ({ children }) => {
     };
   });
 
-  const [token, setToken] = useState(() => localStorage.getItem('karigar_token') || 'demo-token');
+  const [token, setToken] = useState(() => {
+    try {
+      return localStorage.getItem('karigar_token') || 'demo-token';
+    } catch (e) {
+      return 'demo-token';
+    }
+  });
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (user) {
-      localStorage.setItem('karigar_user', JSON.stringify(user));
-    } else {
-      localStorage.removeItem('karigar_user');
+    try {
+      if (user) {
+        localStorage.setItem('karigar_user', JSON.stringify(user));
+      } else {
+        localStorage.removeItem('karigar_user');
+      }
+    } catch (e) {
+      console.warn('Storage write restricted:', e);
     }
   }, [user]);
 
