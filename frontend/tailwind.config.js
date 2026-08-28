@@ -44,11 +44,13 @@ export default {
         }
       },
       fontFamily: {
-        serif: ['"Playfair Display"', '"Cormorant Garamond"', 'Georgia', 'serif'],
-        editorial: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        display: ['"Cinzel"', '"Playfair Display"', 'serif'],
+        luxury: ['"Bodoni Moda"', '"Playfair Display"', 'Georgia', 'serif'],
+        serif: ['"Bodoni Moda"', '"Playfair Display"', '"Cormorant Garamond"', 'Georgia', 'serif'],
+        editorial: ['"Cormorant Garamond"', '"Playfair Display"', 'Georgia', 'serif'],
+        display: ['"Cinzel"', '"Bodoni Moda"', '"Playfair Display"', 'serif'],
+        indian: ['"Rozha One"', '"Cinzel"', 'serif'],
         sans: ['"Plus Jakarta Sans"', '"Outfit"', '"Sora"', 'system-ui', '-apple-system', 'sans-serif'],
-        modern: ['"Sora"', '"Outfit"', 'sans-serif'],
+        modern: ['"Outfit"', '"Sora"', '"Plus Jakarta Sans"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace']
       }
     },

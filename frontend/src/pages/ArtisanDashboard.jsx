@@ -202,14 +202,14 @@ export default function ArtisanDashboard() {
                     className="w-16 h-16 rounded-xl object-cover bg-stone-100 border border-stone-200"
                   />
                   <div>
-                    <h3 className="text-sm font-bold text-stone-900 hover:text-terracotta">
+                    <h3 className="text-sm font-bold text-stone-900 dark:text-stone-100 hover:text-[#C85A27] dark:hover:text-amber-400 transition-colors">
                       <Link to={'/product/' + p.id}>{p.title}</Link>
                     </h3>
-                    <div className="flex items-center gap-2 text-xs text-stone-500 mt-1">
+                    <div className="flex items-center gap-2 text-xs text-stone-500 dark:text-stone-400 mt-1">
                       <span className="font-medium">{p.craft_type}</span>
-                      <span>?</span>
-                      <span>?{Number(p.price || 0).toLocaleString('en-IN')}</span>
-                      <span>?</span>
+                      <span>•</span>
+                      <span className="font-semibold text-stone-900 dark:text-amber-400 font-mono">₹{Number(p.price || 0).toLocaleString('en-IN')}</span>
+                      <span>•</span>
                       <span>{p.views || 0} views</span>
                     </div>
                   </div>

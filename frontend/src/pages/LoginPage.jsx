@@ -180,21 +180,23 @@ export default function LoginPage() {
 
           <div className="pt-1 flex items-center justify-between text-[11px] text-stone-500 border-t border-amber-200/60">
             <span>Or 1-click instant access:</span>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => handleInstantDemo('artisan')}
-                className="font-bold text-[#C85A27] hover:underline"
+                className="font-bold text-[#C85A27] hover:underline flex items-center gap-0.5"
               >
-                Artisan Demo ?
+                <span>Artisan Demo</span>
+                <span>→</span>
               </button>
-              <span>?</span>
+              <span className="text-stone-300 dark:text-stone-700">•</span>
               <button
                 type="button"
                 onClick={() => handleInstantDemo('buyer')}
-                className="font-bold text-indigoCraft hover:underline"
+                className="font-bold text-indigo-600 dark:text-amber-400 hover:underline flex items-center gap-0.5"
               >
-                Buyer Demo ?
+                <span>Buyer Demo</span>
+                <span>→</span>
               </button>
             </div>
           </div>

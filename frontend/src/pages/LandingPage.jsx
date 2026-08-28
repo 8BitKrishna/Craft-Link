@@ -13,6 +13,9 @@ import ProductCard from '../components/ProductCard';
 import ScrollReveal from '../components/ScrollReveal';
 import AnimatedCounter from '../components/AnimatedCounter';
 import CraftVideoShowcase from '../components/CraftVideoShowcase';
+import ArtisanAudioStoryteller from '../components/ArtisanAudioStoryteller';
+import CraftTextureInspector from '../components/CraftTextureInspector';
+import { FALLBACK_PRODUCTS } from '../data/seedProductsFallback';
 
 export const CRAFT_CATEGORIES = [
   { id: 'pottery', name: 'Blue Pottery & Clay', hindi: 'नीली मिट्टी व बर्तन', icon: '🏺', count: '140+ Crafts' },
@@ -26,12 +29,17 @@ export const CRAFT_CATEGORIES = [
 export default function LandingPage() {
   const { t, lang } = useLanguage();
   const { isDark } = useTheme();
-  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [featuredProducts, setFeaturedProducts] = useState(FALLBACK_PRODUCTS.slice(0, 4));
 
   useEffect(() => {
     productApi.getProducts({ limit: 4, sort_by: 'views' })
-      .then(res => setFeaturedProducts(res.data))
-      .catch(err => console.error(err));
+      .then(res => {
+        if (res.data && res.data.length > 0) setFeaturedProducts(res.data);
+      })
+      .catch(err => {
+        console.warn('Using fallback featured crafts:', err);
+        setFeaturedProducts(FALLBACK_PRODUCTS.slice(0, 4));
+      });
   }, []);
 
   return (
@@ -455,10 +463,16 @@ export default function LandingPage() {
         </section>
       )}
 
-      {/* 8. INDIAN CRAFT DOCUMENTARIES & HINDI VIDEO STORIES */}
+      {/* 8. ARTISAN AUDIO STORYTELLER SIMULATOR */}
+      <ArtisanAudioStoryteller />
+
+      {/* 9. 360° MATERIAL & WEAVE MICRO-INSPECTOR */}
+      <CraftTextureInspector />
+
+      {/* 10. INDIAN CRAFT DOCUMENTARIES & HINDI VIDEO STORIES */}
       <CraftVideoShowcase />
 
-      {/* 9. FINAL CALL TO ACTION BANNER */}
+      {/* 11. FINAL CALL TO ACTION BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <ScrollReveal>
           <div className="bg-gradient-to-r from-stone-900 via-indigoCraft to-stone-900 rounded-3xl p-8 sm:p-14 text-white text-center relative overflow-hidden shadow-2xl border border-stone-800">

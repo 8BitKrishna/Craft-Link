@@ -120,15 +120,15 @@ export default function RegisterPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-stone-700 mb-1">Password *</label>
+            <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">Password *</label>
             <input
               type="password"
               required
               minLength={6}
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              placeholder="????????"
-              className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-xs text-stone-900 focus:outline-none focus:border-terracotta"
+              placeholder="••••••••"
+              className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-xs text-stone-900 dark:text-stone-100 focus:outline-none focus:border-[#C85A27]"
             />
           </div>
         </div>

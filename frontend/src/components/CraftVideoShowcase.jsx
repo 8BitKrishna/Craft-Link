@@ -109,11 +109,11 @@ export default function CraftVideoShowcase() {
       <ScrollReveal>
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 text-red-700 text-xs font-bold border border-red-200 mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 dark:bg-red-950/60 text-red-700 dark:text-red-300 text-xs font-bold border border-red-200 dark:border-red-800/60 mb-2">
               <Youtube className="w-3.5 h-3.5 text-red-600 fill-red-600" />
-              <span>?????? ???????? ?????????? ? Indian Craft Documentaries</span>
+              <span>भारतीय हस्तकला वृत्तचित्र • Indian Craft Documentaries</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-serif text-stone-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-luxury text-stone-900 dark:text-stone-100 tracking-tight">
               Watch the Stories Behind India's Master Karigars
             </h2>
             <p className="text-xs sm:text-sm text-stone-500 max-w-2xl mt-1 leading-relaxed">
