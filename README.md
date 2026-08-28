@@ -1,8 +1,8 @@
-# KarigarSetu ? AI-Powered Marketplace for Indian Artisans
+# CraftLink ? AI-Powered Marketplace for Indian Artisans
 
 
 > **"From a simple photo to a professional catalogue."**  
-> KarigarSetu uses Multimodal AI to turn a single product photo into an authentic digital product listing, bridging marginalized Indian artisans directly to global buyers with natural language semantic search and smart market matching.
+> CraftLink uses Multimodal AI to turn a single product photo into an authentic digital product listing, bridging marginalized Indian artisans directly to global buyers with natural language semantic search and smart market matching.
 
 ---
 
@@ -15,7 +15,7 @@ India possesses over 7 million traditional handicraft artisans representing cent
 3. **Loss of provenance**: Cultural storytelling and artisan lineage get stripped away in generic e-commerce listings.
 4. **Keyword mismatch**: Modern buyers search with intent (*"traditional blue decor from Rajasthan"*), while artisans lack SEO knowledge.
 
-### The KarigarSetu Solution
+### The CraftLink Solution
 - **One-Photo AI Digitization**: The artisan uploads a single photo. Gemini Multimodal AI extracts craft lineage, materials, colors, and region.
 - **AI Catalog Copilot**: Automatically drafts professional titles, storytelling descriptions, buyer personas, and SEO tags in English and Hindi.
 - **Natural Language Semantic Search**: Intent-driven vector search connects buyer queries with relevant crafts and explains *"Why these products match"*.
@@ -76,7 +76,7 @@ graph TD
 ## 4. Folder Structure
 
 `
-karigarsetu/
+craftlink/
 ??? frontend/                     # React 18/19 + Vite + Tailwind CSS
 ?   ??? src/
 ?   ?   ??? components/           # Navbar, Footer, ProductCard, Search, Modals, Filter
@@ -172,8 +172,8 @@ The app includes an **Interactive Demo Helper Banner** with instant 1-click logi
 
 | Role | Demo Email | Persona Context |
 |---|---|---|
-| **Artisan** | rtisan@karigarsetu.in | Ramesh Kumawat, Master Blue Pottery Karigar (Jaipur, Rajasthan) |
-| **Buyer** | uyer@karigarsetu.in | Ananya Sharma, Conscious Craft Buyer & Interior Collector (Delhi) |
+| **Artisan** | rtisan@craftlink.in | Ramesh Kumawat, Master Blue Pottery Karigar (Jaipur, Rajasthan) |
+| **Buyer** | uyer@craftlink.in | Ananya Sharma, Conscious Craft Buyer & Interior Collector (Delhi) |
 
 ---
 

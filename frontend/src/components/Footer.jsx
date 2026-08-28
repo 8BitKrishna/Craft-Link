@@ -92,21 +92,28 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Impact & Values */}
+          {/* Platform Help & Contact */}
           <div>
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4 font-sans">Artisan Empowerment</h4>
-            <ul className="space-y-3 text-xs text-stone-400 font-sans">
-              <li className="flex items-start gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span>Zero-typing multilingual catalogue generation.</span>
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4 font-sans">CraftLink Help & Support</h4>
+            <ul className="space-y-2.5 text-xs text-stone-400 font-sans">
+              <li className="flex items-center gap-2">
+                <span className="text-emerald-400">✉️</span>
+                <span>Mail: <a href="mailto:support@craftlink.in" className="hover:text-amber-400 font-semibold text-stone-300">support@craftlink.in</a></span>
               </li>
-              <li className="flex items-start gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span>Direct market linkage without middleman exploitation.</span>
+              <li className="flex items-center gap-2">
+                <span className="text-amber-400">🆘</span>
+                <span>Help Desk: <a href="mailto:help@craftlink.in" className="hover:text-amber-400 font-semibold text-stone-300">help@craftlink.in</a></span>
               </li>
-              <li className="flex items-start gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span>Preserving ancestral provenance & GI tags.</span>
+              <li className="flex items-center gap-2">
+                <span className="text-sky-400">📞</span>
+                <span>Toll-Free: <a href="tel:18002026026" className="hover:text-amber-400 font-semibold text-stone-300 font-mono">+91 1800-202-6026</a></span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-emerald-400">💬</span>
+                <span>WhatsApp: <span className="text-stone-300 font-mono font-semibold">+91 98765 43210</span></span>
+              </li>
+              <li className="pt-2 text-[11px] text-stone-500">
+                Mon - Sat: 9:00 AM - 7:00 PM IST
               </li>
             </ul>
           </div>

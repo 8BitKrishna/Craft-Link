@@ -6,7 +6,7 @@ const LanguageContext = createContext();
 export const LanguageProvider = ({ children }) => {
   const [lang, setLang] = useState(() => {
     try {
-      return localStorage.getItem('karigar_lang') || 'en';
+      return localStorage.getItem('craftlink_lang') || 'en';
     } catch (e) {
       return 'en';
     }
@@ -14,7 +14,7 @@ export const LanguageProvider = ({ children }) => {
 
   useEffect(() => {
     try {
-      localStorage.setItem('karigar_lang', lang);
+      localStorage.setItem('craftlink_lang', lang);
     } catch (e) {
       console.warn('Storage write restricted:', e);
     }

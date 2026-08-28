@@ -60,10 +60,10 @@ export default function LoginPage() {
 
   const handlePreFill = (role) => {
     if (role === 'artisan') {
-      setEmail('artisan@karigarsetu.in');
+      setEmail('artisan@craftlink.in');
       setPassword('artisan123');
     } else {
-      setEmail('buyer@karigarsetu.in');
+      setEmail('buyer@craftlink.in');
       setPassword('buyer123');
     }
     setError('');
@@ -159,7 +159,7 @@ export default function LoginPage() {
                 <UserCheck className="w-3.5 h-3.5 text-[#C85A27]" />
                 <span>Artisan Login</span>
               </div>
-              <div className="text-[10px] text-stone-500 font-mono mt-0.5">artisan@karigarsetu.in</div>
+              <div className="text-[10px] text-stone-500 font-mono mt-0.5">artisan@craftlink.in</div>
               <div className="text-[10px] text-stone-400 font-mono">Pass: artisan123</div>
             </button>
 
@@ -173,7 +173,7 @@ export default function LoginPage() {
                 <ShoppingCart className="w-3.5 h-3.5 text-indigoCraft" />
                 <span>Buyer Login</span>
               </div>
-              <div className="text-[10px] text-stone-500 font-mono mt-0.5">buyer@karigarsetu.in</div>
+              <div className="text-[10px] text-stone-500 font-mono mt-0.5">buyer@craftlink.in</div>
               <div className="text-[10px] text-stone-400 font-mono">Pass: buyer123</div>
             </button>
           </div>
@@ -264,7 +264,7 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="artisan@karigarsetu.in"
+                  placeholder="artisan@craftlink.in"
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-stone-200/90 bg-white/80 text-xs text-stone-900 focus:outline-none focus:border-[#C85A27] focus:bg-white transition-all shadow-xs"
                 />
               </div>

@@ -13,7 +13,7 @@ load_dotenv()
 
 SUPABASE_URL = os.getenv('SUPABASE_URL', '').strip()
 SUPABASE_SERVICE_KEY = os.getenv('SUPABASE_SERVICE_KEY', '').strip()
-DB_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'karigarsetu.db')
+DB_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'craftlink.db')
 
 class DatabaseService:
     def __init__(self):

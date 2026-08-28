@@ -6,7 +6,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     try {
-      const saved = localStorage.getItem('karigar_user');
+      const saved = localStorage.getItem('craftlink_user');
       if (saved) return JSON.parse(saved);
     } catch (e) {
       console.warn('Storage read restricted:', e);
@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     return {
       id: 'artisan-ramesh-01',
       name: 'Ramesh Kumawat',
-      email: 'artisan@karigarsetu.in',
+      email: 'artisan@craftlink.in',
       role: 'artisan',
       craft_type: 'Blue Pottery',
       state: 'Rajasthan',
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
 
   const [token, setToken] = useState(() => {
     try {
-      return localStorage.getItem('karigar_token') || 'demo-token';
+      return localStorage.getItem('craftlink_token') || 'demo-token';
     } catch (e) {
       return 'demo-token';
     }
@@ -34,9 +34,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     try {
       if (user) {
-        localStorage.setItem('karigar_user', JSON.stringify(user));
+        localStorage.setItem('craftlink_user', JSON.stringify(user));
       } else {
-        localStorage.removeItem('karigar_user');
+        localStorage.removeItem('craftlink_user');
       }
     } catch (e) {
       console.warn('Storage write restricted:', e);
@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
       const res = await authApi.login({ email, password });
       setUser(res.data.user);
       setToken(res.data.token);
-      localStorage.setItem('karigar_token', res.data.token);
+      localStorage.setItem('craftlink_token', res.data.token);
       return res.data;
     } finally {
       setLoading(false);
@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
       const res = await authApi.register(userData);
       setUser(res.data.user);
       setToken(res.data.token);
-      localStorage.setItem('karigar_token', res.data.token);
+      localStorage.setItem('craftlink_token', res.data.token);
       return res.data;
     } finally {
       setLoading(false);
@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
       const res = await authApi.demoLogin(role);
       setUser(res.data.user);
       setToken(res.data.token);
-      localStorage.setItem('karigar_token', res.data.token);
+      localStorage.setItem('craftlink_token', res.data.token);
       return res.data;
     } finally {
       setLoading(false);
@@ -85,8 +85,8 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem('karigar_user');
-    localStorage.removeItem('karigar_token');
+    localStorage.removeItem('craftlink_user');
+    localStorage.removeItem('craftlink_token');
   };
 
   return (

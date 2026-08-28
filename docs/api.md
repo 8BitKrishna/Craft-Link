@@ -1,4 +1,4 @@
-# KarigarSetu ? REST API Documentation
+# CraftLink ? REST API Documentation
 **Smart India Hackathon (SIH) 2026**
 
 Base URL: http://localhost:8000/api

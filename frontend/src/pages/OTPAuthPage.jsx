@@ -138,8 +138,8 @@ export default function OTPAuthPage() {
       
       // Update global context
       if (res.data?.user) {
-        localStorage.setItem('karigar_user', JSON.stringify(res.data.user));
-        localStorage.setItem('karigar_token', res.data.token);
+        localStorage.setItem('craftlink_user', JSON.stringify(res.data.user));
+        localStorage.setItem('craftlink_token', res.data.token);
       }
 
       setTimeout(() => {

@@ -1,4 +1,4 @@
--- KarigarSetu Database Schema for Supabase PostgreSQL (SIH 2026)
+-- CraftLink Database Schema for Supabase PostgreSQL (SIH 2026)
 
 -- 1. Enable pgvector extension for AI embeddings
 CREATE EXTENSION IF NOT EXISTS vector;

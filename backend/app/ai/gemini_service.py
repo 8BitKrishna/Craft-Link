@@ -62,7 +62,7 @@ class GeminiService:
 
                 if pil_img:
                     prompt = (
-                        "You are KarigarSetu\'s Expert Indian Handicraft & Artisan Vision AI.\n"
+                        "You are CraftLink\'s Expert Indian Handicraft & Artisan Vision AI.\n"
                         "Analyze this product image carefully. Identify the traditional Indian craft, materials, colors, region, and visual traits.\n"
                         f"Artisan Hint: {craft_hint or 'None provided'}\n"
                         "Respond ONLY with a valid JSON object with keys: product_type, craft, material, colors (list), region, state, category, style, keywords (list), visual_characteristics (list), confidence_score (float)."
@@ -187,7 +187,7 @@ class GeminiService:
         if self.is_configured and text_model:
             try:
                 prompt = (
-                    "You are KarigarSetu\'s AI Catalog Copilot for Indian Artisans.\n"
+                    "You are CraftLink\'s AI Catalog Copilot for Indian Artisans.\n"
                     "Generate a professional, culturally authentic product listing based on these attributes:\n"
                     f"{json.dumps(attributes, indent=2)}\n"
                     f"Artisan: {artisan_name}, Notes: {craft_notes or 'Authentic traditional craft'}\n"
@@ -262,7 +262,7 @@ class GeminiService:
             "craft_story_hindi": story_hi,
             "keywords": tags[:5],
             "seo_metadata": {
-                "meta_title": f"{title} | KarigarSetu",
+                "meta_title": f"{title} | CraftLink",
                 "meta_description": short_desc
             },
             "is_demo_mode": True

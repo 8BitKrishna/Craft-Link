@@ -495,7 +495,7 @@ SEED_PRODUCTS: List[Dict[str, Any]] = [
 DEMO_USERS: List[Dict[str, Any]] = [
     {
         "id": "artisan-ramesh-01",
-        "email": "artisan@karigarsetu.in",
+        "email": "artisan@craftlink.in",
         "name": "Ramesh Kumawat",
         "role": "artisan",
         "phone": "+91 98290 12345",
@@ -509,7 +509,7 @@ DEMO_USERS: List[Dict[str, Any]] = [
     },
     {
         "id": "buyer-ananya-01",
-        "email": "buyer@karigarsetu.in",
+        "email": "buyer@craftlink.in",
         "name": "Ananya Sharma",
         "role": "buyer",
         "phone": "+91 98110 54321",

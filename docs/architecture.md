@@ -1,9 +1,9 @@
-# KarigarSetu ? Architecture & Technical Design
+# CraftLink ? Architecture & Technical Design
 **Smart India Hackathon (SIH) 2026**
 
 ## 1. System Overview
 
-KarigarSetu is an AI-powered multi-tier marketplace platform built to eliminate barriers for marginalized Indian artisans.
+CraftLink is an AI-powered multi-tier marketplace platform built to eliminate barriers for marginalized Indian artisans.
 
 `mermaid
 graph TD

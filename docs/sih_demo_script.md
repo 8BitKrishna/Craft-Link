@@ -1,18 +1,18 @@
-# KarigarSetu ? 5-to-7 Minute SIH Demo Presentation Script
+# CraftLink ? 5-to-7 Minute SIH Demo Presentation Script
 **Smart India Hackathon (SIH) 2026**
 
 ## Target Demonstration Flow
 
 ### Scene 1 ? The Problem & Artisan Login (0:00 - 1:00)
 - **Presenter**: *"Millions of master Indian artisans possess centuries of cultural craft knowledge, but remain locked out of high-value digital markets due to digital literacy barriers, typing friction, and lack of cataloguing knowledge."*
-- **Action**: Open KarigarSetu landing page (http://localhost:5173).
+- **Action**: Open CraftLink landing page (http://localhost:5173).
 - **Highlight**: Click the **"Artisan Mode"** quick button on the demo banner.
 - **Result**: Immediate login as **Ramesh Kumawat (Jaipur, Rajasthan)**. Dashboard loads showcasing stats, live listings, and AI market opportunities.
 
 ---
 
 ### Scene 2 ? One-Click AI Photo Upload (1:00 - 2:15)
-- **Presenter**: *"With KarigarSetu, an artisan only needs ONE single photograph of their craft. No complex typing required."*
+- **Presenter**: *"With CraftLink, an artisan only needs ONE single photograph of their craft. No complex typing required."*
 - **Action**: Click **"+ Add Product with AI"**.
 - **Action**: Click the **"Jaipur Blue Pottery Floral Vase"** demo craft preset (or upload any photo).
 - **Action**: Click **"Let AI Understand & Create Catalogue"**.
@@ -55,4 +55,4 @@
 ---
 
 ### Scene 6 ? Conclusion & SIH Impact (6:00 - 7:00)
-- **Summary**: *"KarigarSetu bridges the gap between rural craftsmanship and modern digital commerce through multimodal AI, zero-friction mobile accessibility, and semantic intent matching."*
+- **Summary**: *"CraftLink bridges the gap between rural craftsmanship and modern digital commerce through multimodal AI, zero-friction mobile accessibility, and semantic intent matching."*

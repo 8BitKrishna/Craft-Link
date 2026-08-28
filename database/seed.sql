@@ -1,4 +1,4 @@
--- KarigarSetu Seed Data for Supabase PostgreSQL (SIH 2026)
+-- CraftLink Seed Data for Supabase PostgreSQL (SIH 2026)
 
 INSERT INTO public.products (
     id, artisan_id, artisan_name, title, description, short_description,

@@ -6,7 +6,7 @@ import json
 import time
 from typing import Optional, Dict, Any
 
-SECRET_KEY = os.getenv('JWT_SECRET', 'karigarsetu-sih2026-super-secret-key-heritage-crafts')
+SECRET_KEY = os.getenv('JWT_SECRET', 'craftlink-sih2026-super-secret-key-heritage-crafts')
 
 def hash_password(password: str) -> str:
     if not password:

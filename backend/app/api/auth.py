@@ -86,7 +86,7 @@ def get_profile(user_id: str):
 
 @router.post('/demo-login/{role}', response_model=AuthResponse)
 def demo_login(role: str):
-    email = 'artisan@karigarsetu.in' if role.lower() == 'artisan' else 'buyer@karigarsetu.in'
+    email = 'artisan@craftlink.in' if role.lower() == 'artisan' else 'buyer@craftlink.in'
     user = db.get_user_by_email(email)
     if not user:
         default_hash = hash_password('artisan123' if role == 'artisan' else 'buyer123')

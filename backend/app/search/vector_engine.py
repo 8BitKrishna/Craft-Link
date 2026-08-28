@@ -1,4 +1,4 @@
-# Semantic Intent Search and Recommendation Engine for KarigarSetu
+# Semantic Intent Search and Recommendation Engine for CraftLink
 import os
 import re
 import math
