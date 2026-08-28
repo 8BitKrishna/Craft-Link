@@ -6,6 +6,7 @@ import ProductCard from '../components/ProductCard';
 import SearchWithSemanticAI from '../components/SearchWithSemanticAI';
 import FilterSidebar from '../components/FilterSidebar';
 import { Sparkles, SlidersHorizontal, Loader2 } from 'lucide-react';
+import { FALLBACK_PRODUCTS } from '../data/seedProductsFallback';
 
 export default function MarketplacePage() {
   const { t } = useLanguage();
@@ -37,7 +38,12 @@ export default function MarketplacePage() {
       setCategories(catRes.data);
       setCraftTypes(craftRes.data);
       setRegions(regRes.data);
-    }).catch(err => console.error(err));
+    }).catch(err => {
+      // Fallback categories if server not reached
+      setCategories(['Home Decor', 'Apparel & Accessories', 'Tribal Art & Sculptures', 'Toys & Games']);
+      setCraftTypes(['Blue Pottery', 'Pashmina Weaving & Sozni', 'Dhokra Bell Metal', 'Lacquer Woodcraft', 'Banarasi Handloom Silk', 'Madhubani Folk Painting']);
+      setRegions(['Rajasthan', 'Jammu & Kashmir', 'Chhattisgarh', 'Karnataka', 'Uttar Pradesh', 'Bihar']);
+    });
   }, []);
 
   useEffect(() => {
@@ -67,19 +73,24 @@ export default function MarketplacePage() {
             sort_by: sortBy,
             limit: 50
           });
-          setProducts(res.data);
+          setProducts(res.data && res.data.length > 0 ? res.data : FALLBACK_PRODUCTS);
           setCurrentIntent(null);
           setMatchReasons({});
         }
       } catch (err) {
-        console.error(err);
+        console.warn('API fetch failed, utilizing fallback dataset:', err);
+        let filtered = [...FALLBACK_PRODUCTS];
+        if (selectedCategory) filtered = filtered.filter(p => p.category === selectedCategory);
+        if (selectedCraft) filtered = filtered.filter(p => p.craft_type === selectedCraft);
+        if (selectedRegion) filtered = filtered.filter(p => p.state === selectedRegion || p.region.includes(selectedRegion));
+        setProducts(filtered);
       } finally {
         setLoading(false);
       }
     };
 
     fetchProducts();
-  }, [searchParams]);
+  }, [searchParams, selectedCategory, selectedCraft, selectedRegion, sortBy]);
 
   const handleSearch = (q) => {
     const newParams = new URLSearchParams(searchParams);

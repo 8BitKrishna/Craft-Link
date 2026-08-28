@@ -5,6 +5,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { Sparkles, MapPin, ShieldCheck, MessageSquare, ArrowLeft, Eye, Award, User, Layers, Palette } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import ContactArtisanModal from '../components/ContactArtisanModal';
+import { FALLBACK_PRODUCTS } from '../data/seedProductsFallback';
 
 export default function ProductDetailPage() {
   const { id } = useParams();
@@ -26,14 +27,19 @@ export default function ProductDetailPage() {
       .then(recRes => {
         setRecommendations(recRes.data);
       })
-      .catch(err => console.error(err))
+      .catch(err => {
+        console.warn('Product detail API fetch failed, utilizing fallback dataset:', err);
+        const found = FALLBACK_PRODUCTS.find(p => p.id === id) || FALLBACK_PRODUCTS[0];
+        setProduct(found);
+        setRecommendations(FALLBACK_PRODUCTS.filter(p => p.id !== found.id).slice(0, 3));
+      })
       .finally(() => setLoading(false));
   }, [id]);
 
   if (loading) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center text-stone-400">
-        <div className="animate-spin w-8 h-8 border-4 border-terracotta border-t-transparent rounded-full mx-auto mb-3" />
+        <div className="animate-spin w-8 h-8 border-4 border-[#C85A27] border-t-transparent rounded-full mx-auto mb-3" />
         <span className="text-xs font-semibold">Loading craft masterpiece...</span>
       </div>
     );
@@ -42,9 +48,9 @@ export default function ProductDetailPage() {
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-        <h2 className="text-xl font-bold font-serif text-stone-900 mb-2">Product Not Found</h2>
-        <Link to="/marketplace" className="text-xs text-terracotta hover:underline font-bold">
-          ? Return to Marketplace
+        <h2 className="text-xl font-bold font-serif text-stone-900 dark:text-stone-100 mb-2">Product Not Found</h2>
+        <Link to="/marketplace" className="text-xs text-[#C85A27] dark:text-amber-400 hover:underline font-bold">
+          ← Return to Marketplace
         </Link>
       </div>
     );
@@ -55,7 +61,7 @@ export default function ProductDetailPage() {
       <div>
         <Link
           to="/marketplace"
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-600 hover:text-terracotta transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-600 dark:text-stone-400 hover:text-[#C85A27] dark:hover:text-amber-400 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Marketplace</span>
