@@ -15,6 +15,7 @@ import ArtisanAudioStoryteller from '../components/ArtisanAudioStoryteller';
 import CraftTextureInspector from '../components/CraftTextureInspector';
 import InteractiveCraftMap from '../components/InteractiveCraftMap';
 import NaturalPaletteInspector from '../components/NaturalPaletteInspector';
+import CraftCategoryMarquee from '../components/CraftCategoryMarquee';
 import { FALLBACK_PRODUCTS } from '../data/seedProductsFallback';
 
 export const CRAFT_CATEGORIES = [
@@ -131,40 +132,8 @@ export default function LandingPage() {
 
       </section>
 
-      {/* 2. LIVING CRAFT CATEGORIES (Airy, Spacious Grid, Single Clean Language) */}
-      <section className="max-w-6xl mx-auto px-6 sm:px-8">
-        <ScrollReveal>
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <div className="text-xs font-bold uppercase tracking-widest text-[#C85A32] dark:text-amber-400">
-              {lang === 'hi' ? 'शिल्प विधाएँ' : 'Heritage Craft Collections'}
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-serif font-bold text-stone-900 dark:text-stone-100">
-              {lang === 'hi' ? 'श्रेणियों के अनुसार अन्वेषण करें' : 'Explore by Craft Form'}
-            </h2>
-          </div>
-        </ScrollReveal>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8">
-          {CRAFT_CATEGORIES.map((cat, idx) => (
-            <ScrollReveal key={cat.id} delay={idx * 0.05}>
-              <Link
-                to={`/marketplace?category=${encodeURIComponent(cat.id)}`}
-                className="flex flex-col items-center p-8 rounded-3xl bg-white dark:bg-[#131B2A] border border-stone-200 dark:border-stone-800 hover:border-amber-400 dark:hover:border-amber-400 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all text-center group"
-              >
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
-                  {cat.icon}
-                </div>
-                <div className="font-serif font-bold text-sm sm:text-base text-stone-900 dark:text-stone-100 leading-snug">
-                  {lang === 'hi' ? cat.hindi : cat.name}
-                </div>
-                <div className="text-[11px] text-amber-800 dark:text-amber-300 font-bold mt-4 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/60 border border-amber-200/50 dark:border-amber-800/40">
-                  {cat.count}
-                </div>
-              </Link>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
+      {/* 2. LIVING CRAFT CATEGORIES (Infinite Moving Horizontal Stream with Pause & Zoom) */}
+      <CraftCategoryMarquee />
 
       {/* 3. DUAL-AUDIENCE GATEWAY (Artisans vs Connoisseurs) */}
       <section className="max-w-6xl mx-auto px-6 sm:px-8">
