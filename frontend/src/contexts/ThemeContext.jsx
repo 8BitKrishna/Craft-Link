@@ -7,30 +7,36 @@ export const ThemeProvider = ({ children }) => {
     try {
       const saved = localStorage.getItem('craftlink_theme');
       if (saved === 'dark' || saved === 'light') return saved;
-    } catch (e) {
-      console.warn('Storage access restricted:', e);
-    }
-    return 'light'; // Default to light (warm heritage craft theme)
+    } catch (e) {}
+    return 'light';
   });
 
-  useEffect(() => {
+  const applyTheme = (t) => {
     try {
       const root = document.documentElement;
-      if (theme === 'dark') {
+      if (t === 'dark') {
         root.classList.add('dark');
         document.body.classList.add('dark');
       } else {
         root.classList.remove('dark');
         document.body.classList.remove('dark');
       }
+    } catch (e) {}
+  };
+
+  useEffect(() => {
+    applyTheme(theme);
+    try {
       localStorage.setItem('craftlink_theme', theme);
-    } catch (e) {
-      console.warn('Storage write restricted:', e);
-    }
+    } catch (e) {}
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+    setTheme(prev => {
+      const next = prev === 'light' ? 'dark' : 'light';
+      applyTheme(next);
+      return next;
+    });
   };
 
   return (
