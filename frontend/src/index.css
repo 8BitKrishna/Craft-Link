@@ -3,8 +3,10 @@
 @tailwind utilities;
 
 @layer base {
-  *, *::before, *::after, html, body, a, button, input, select, textarea, [role="button"] {
-    cursor: none !important;
+  @media (pointer: fine) {
+    *, *::before, *::after, html, body, a, button, input, select, textarea, [role="button"] {
+      cursor: none !important;
+    }
   }
 
   body {

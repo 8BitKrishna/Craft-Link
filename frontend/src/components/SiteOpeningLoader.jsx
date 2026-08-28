@@ -7,19 +7,25 @@ export default function SiteOpeningLoader() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    // Safety auto-dismiss
+    const safetyTimeout = setTimeout(() => setLoading(false), 1000);
+
     // Animate loading progress bar
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(() => setLoading(false), 400);
+          setTimeout(() => setLoading(false), 300);
           return 100;
         }
         return prev + 25;
       });
-    }, 200);
+    }, 150);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(safetyTimeout);
+    };
   }, []);
 
   return (
