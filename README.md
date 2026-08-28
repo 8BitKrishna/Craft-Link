@@ -1,10 +1,5 @@
 # KarigarSetu ? AI-Powered Marketplace for Indian Artisans
 
-[![Smart India Hackathon 2026](https://img.shields.io/badge/SIH-2026_MVP-orange.svg)](https://sih.gov.in/)
-[![FastAPI](https://img.shields.io/badge/Backend-FastAPI_0.115+-009688.svg)](https://fastapi.tiangolo.com)
-[![React](https://img.shields.io/badge/Frontend-React_18_+_Vite-61DAFB.svg)](https://react.dev/)
-[![Gemini AI](https://img.shields.io/badge/AI-Gemini_2.5_Flash-blue.svg)](https://aistudio.google.com/)
-[![Tailwind CSS](https://img.shields.io/badge/UI-Tailwind_CSS-38B2AC.svg)](https://tailwindcss.com/)
 
 > **"From a simple photo to a professional catalogue."**  
 > KarigarSetu uses Multimodal AI to turn a single product photo into an authentic digital product listing, bridging marginalized Indian artisans directly to global buyers with natural language semantic search and smart market matching.
