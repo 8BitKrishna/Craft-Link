@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, Volume2, VolumeX, Sparkles, Mic, Globe, CheckCircle2, RotateCcw } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import ScrollReveal from './ScrollReveal';
 
 export const AUDIO_STORIES = [
@@ -9,7 +10,6 @@ export const AUDIO_STORIES = [
     craftName: 'Jaipur Blue Pottery',
     artisanName: 'Ramesh Kumawat',
     region: 'Kot Jewar, Rajasthan',
-    language: 'हिन्दी (Hindi)',
     duration: '0:48',
     audioTextHindi: 'राम-राम सा! मैं रमेश कुमावत, जयपुर के कोट जेवर गाँव से। हमारी यह नीली मिट्टी की कला 400 साल पुरानी है। इसमें सामान्य चिकनी मिट्टी नहीं, बल्कि क्वार्ट्ज पत्थर, प्राकृतिक गोंद और साजी का उपयोग होता है। हर फूल-पत्ती को हम हाथ से प्राकृतिक रंगों से सजाते हैं।',
     audioTextEnglish: 'Greetings! I am Ramesh Kumawat from Kot Jewar village, Jaipur. Our blue pottery craft is over 400 years old. Instead of regular clay, we use powdered quartz, natural tree gum, and natural minerals. Every peacock and floral motif is painted entirely by hand.',
@@ -20,7 +20,6 @@ export const AUDIO_STORIES = [
     craftName: 'Bastar Dhokra Lost-Wax',
     artisanName: 'Sukhlal Baghel',
     region: 'Kondagaon, Bastar',
-    language: 'हिन्दी (Hindi)',
     duration: '0:55',
     audioTextHindi: 'जोहार! मैं सुखलाल बघेल, बस्तर छत्तीसगढ़ से। हमारी ढोकरा धातु कला मोहन जोदड़ो की कांस्य नृत्यांगना जितनी प्राचीन है। साल के जंगलों से मधुमक्खी का मोम लाकर पहले सांचा बनाते हैं, फिर मिट्टी की तीन परतें चढ़ाकर पिघले पीतल से ढालते हैं।',
     audioTextEnglish: 'Johar! I am Sukhlal Baghel from Bastar, Chhattisgarh. Our Dhokra craft dates back 4,000 years to the Indus Valley dancing girl. We harvest natural beeswax from Sal forests to sculpt the initial wax model, coat it in sacred river clay, and cast in melted brass.',
@@ -31,7 +30,6 @@ export const AUDIO_STORIES = [
     craftName: 'Banarasi Kadwa Silk',
     artisanName: 'Master Ansari',
     region: 'Chowk, Varanasi',
-    language: 'हिन्दी (Hindi)',
     duration: '0:52',
     audioTextHindi: 'अस्सलाम वालेकुम। बनारस की कढ़वा बुनाई में हर ज़री का बूटा अलग-अलग सुइयों से हाथों से गूँथा जाता है। एक शाही साड़ी को पूरा होने में 3 से 4 महीने लगते हैं। यह सिर्फ कपड़ा नहीं, गंगा-जमुनी तहज़ीब और पुरखों की नेमत है।',
     audioTextEnglish: 'Greetings. In Banarasi Kadwa weaving, each gold zari motif is individually woven with micro-needles by hand. A single bridal saree takes 3 to 4 months of patient dedication on pit looms. It is living poetry of Indian handloom.',
@@ -40,207 +38,241 @@ export const AUDIO_STORIES = [
 ];
 
 export default function ArtisanAudioStoryteller() {
+  const { lang } = useLanguage();
   const [activeStoryIdx, setActiveStoryIdx] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [langTab, setLangTab] = useState('hi'); // 'hi' or 'en'
   const [isMuted, setIsMuted] = useState(false);
+  const audioCtxRef = useRef(null);
+  const oscillatorRef = useRef(null);
 
   const activeStory = AUDIO_STORIES[activeStoryIdx];
 
-  // Simulated playback timer
+  // Stop sound when unmounted or paused
+  const stopAudioTone = () => {
+    try {
+      if (oscillatorRef.current) {
+        oscillatorRef.current.stop();
+        oscillatorRef.current.disconnect();
+        oscillatorRef.current = null;
+      }
+    } catch (e) {}
+  };
+
+  // Play pleasant acoustic ambient frequency
+  const playAudioTone = () => {
+    try {
+      if (isMuted) return;
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContext) return;
+      if (!audioCtxRef.current) {
+        audioCtxRef.current = new AudioContext();
+      }
+      if (audioCtxRef.current.state === 'suspended') {
+        audioCtxRef.current.resume();
+      }
+      const osc = audioCtxRef.current.createOscillator();
+      const gain = audioCtxRef.current.createGain();
+      
+      // Soothing warm pentatonic drone (D3 / A3 heritage tone)
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(activeStoryIdx === 0 ? 146.83 : activeStoryIdx === 1 ? 220 : 164.81, audioCtxRef.current.currentTime);
+      gain.gain.setValueAtTime(0.04, audioCtxRef.current.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtxRef.current.currentTime + 3);
+
+      osc.connect(gain);
+      gain.connect(audioCtxRef.current.destination);
+      osc.start();
+      oscillatorRef.current = osc;
+    } catch (e) {
+      console.warn('Web Audio synthesis error:', e);
+    }
+  };
+
+  // Simulated playback timer & Speech Synthesis
   useEffect(() => {
     let interval;
     if (isPlaying) {
+      playAudioTone();
       interval = setInterval(() => {
         setProgress((prev) => {
           if (prev >= 100) {
             setIsPlaying(false);
+            stopAudioTone();
             return 0;
           }
           return prev + 2;
         });
       }, 500);
+    } else {
+      stopAudioTone();
     }
-    return () => clearInterval(interval);
-  }, [isPlaying]);
+    return () => {
+      clearInterval(interval);
+      stopAudioTone();
+    };
+  }, [isPlaying, isMuted, activeStoryIdx]);
 
   const handleTogglePlay = () => {
-    setIsPlaying(!isPlaying);
-    // Web Speech API Voice synthesis for authentic immersive audio demonstration
-    if (!isPlaying && 'speechSynthesis' in window && !isMuted) {
-      window.speechSynthesis.cancel();
-      const textToSpeak = langTab === 'hi' ? activeStory.audioTextHindi : activeStory.audioTextEnglish;
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      utterance.rate = 0.95;
-      utterance.lang = langTab === 'hi' ? 'hi-IN' : 'en-IN';
-      utterance.onend = () => {
-        setIsPlaying(false);
-        setProgress(100);
-      };
-      window.speechSynthesis.speak(utterance);
-    } else if (isPlaying && 'speechSynthesis' in window) {
-      window.speechSynthesis.pause();
-    }
-  };
+    if (isPlaying) {
+      setIsPlaying(false);
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      stopAudioTone();
+    } else {
+      setIsPlaying(true);
+      if ('speechSynthesis' in window && !isMuted) {
+        window.speechSynthesis.cancel();
+        const textToSpeak = lang === 'hi' ? activeStory.audioTextHindi : activeStory.audioTextEnglish;
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        utterance.rate = 0.95;
+        utterance.lang = lang === 'hi' ? 'hi-IN' : 'en-IN';
+        
+        // Find suitable voice if available
+        const voices = window.speechSynthesis.getVoices();
+        const matchingVoice = voices.find(v => (lang === 'hi' ? v.lang.includes('hi') : v.lang.includes('en')));
+        if (matchingVoice) utterance.voice = matchingVoice;
 
-  const handleSelectStory = (idx) => {
-    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-    setActiveStoryIdx(idx);
-    setIsPlaying(false);
-    setProgress(0);
+        utterance.onend = () => {
+          setIsPlaying(false);
+          setProgress(100);
+          stopAudioTone();
+        };
+        utterance.onerror = () => {
+          console.warn('Speech synthesis playback fallback active');
+        };
+        window.speechSynthesis.speak(utterance);
+      }
+    }
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <ScrollReveal>
-        <div className="bg-gradient-to-br from-stone-900 via-[#131B2A] to-[#0A120E] rounded-3xl p-6 sm:p-10 border border-amber-500/20 text-white shadow-2xl relative overflow-hidden">
-          {/* Subtle Ambient Glows */}
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="bg-gradient-to-br from-amber-50/80 via-white to-orange-50/40 dark:from-[#131B2A] dark:via-[#111622] dark:to-[#131B2A] rounded-3xl p-8 sm:p-12 border border-amber-200/70 dark:border-stone-800 shadow-xl relative overflow-hidden">
+          
+          {/* Ambient Glow */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Left Info & Story Selection */}
-            <div className="lg:col-span-5 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-500/30">
-                <Mic className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
-                <span>कारीगर की अपनी आवाज़ • Master Karigar Audio Lineage</span>
+          {/* Section Header */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-8 mb-8 border-b border-amber-200/50 dark:border-stone-800">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300 mb-2 border border-amber-200 dark:border-amber-800/40">
+                <Mic className="w-3.5 h-3.5 text-[#C85A32] dark:text-amber-400" />
+                <span>{lang === 'hi' ? 'कारीगर की अपनी आवाज़' : 'Living Artisan Voices'}</span>
               </div>
-
-              <h3 className="text-2xl sm:text-3xl font-luxury font-extrabold text-white leading-tight">
-                Listen to the Living Soul of Indian Craftsmanship
-              </h3>
-
-              <p className="text-xs sm:text-sm text-stone-300 leading-relaxed font-sans">
-                Experience raw audio voice notes recorded directly in village workshops across India, narrated in authentic native dialects with real-time AI bilingual transcripts.
-              </p>
-
-              {/* Story Pills */}
-              <div className="space-y-2 pt-2">
-                <div className="text-[11px] font-bold text-amber-400 uppercase tracking-wider">
-                  Select Artisan Lineage:
-                </div>
-                <div className="flex flex-col sm:flex-row gap-2">
-                  {AUDIO_STORIES.map((story, idx) => (
-                    <button
-                      key={story.id}
-                      type="button"
-                      onClick={() => handleSelectStory(idx)}
-                      className={`text-left px-3.5 py-2 rounded-xl text-xs transition-all border ${
-                        activeStoryIdx === idx
-                          ? 'bg-amber-500 text-stone-950 font-bold border-amber-400 shadow-md scale-[1.02]'
-                          : 'bg-white/5 hover:bg-white/10 text-stone-300 border-white/10'
-                      }`}
-                    >
-                      <div className="font-serif">{story.craftName}</div>
-                      <div className="text-[10px] opacity-80">{story.artisanName}</div>
-                    </button>
-                  ))}
-                </div>
-              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold font-serif text-stone-900 dark:text-stone-100">
+                {lang === 'hi' ? 'हस्तशिल्प की अनकही कहानियाँ सुनें' : 'Listen to Untold Craft Stories'}
+              </h2>
             </div>
 
-            {/* Right Interactive Audio Player & Transcript */}
-            <div className="lg:col-span-7 bg-black/40 backdrop-blur-xl rounded-2xl p-6 border border-white/10 space-y-6">
-              {/* Player Header */}
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+            {/* Story Picker Tabs */}
+            <div className="flex flex-wrap gap-2">
+              {AUDIO_STORIES.map((st, idx) => (
+                <button
+                  key={st.id}
+                  onClick={() => {
+                    setActiveStoryIdx(idx);
+                    setIsPlaying(false);
+                    setProgress(0);
+                    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                  }}
+                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                    activeStoryIdx === idx
+                      ? 'bg-stone-900 dark:bg-amber-500 text-white dark:text-stone-950 shadow-md'
+                      : 'bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 border border-stone-200 dark:border-stone-700 hover:border-amber-400'
+                  }`}
+                >
+                  {st.craftName}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Player Main Body */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {/* Left: Artisan Profile & Control */}
+            <div className="lg:col-span-4 space-y-6">
+              <div className="p-6 rounded-2xl bg-white dark:bg-[#1C263A] border border-amber-100 dark:border-stone-700 shadow-sm space-y-4">
                 <div>
-                  <div className="text-base sm:text-lg font-bold font-serif text-amber-300">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-[#C85A32] dark:text-amber-400">
+                    {lang === 'hi' ? 'मास्टर शिल्पकार' : 'Master Karigar'}
+                  </div>
+                  <h3 className="text-xl font-bold font-serif text-stone-900 dark:text-stone-100">
                     {activeStory.artisanName}
-                  </div>
-                  <div className="text-xs text-stone-400 font-sans">
-                    {activeStory.craftName} • {activeStory.region}
-                  </div>
+                  </h3>
+                  <p className="text-xs text-stone-500 dark:text-stone-400">
+                    {activeStory.region}
+                  </p>
                 </div>
 
-                {/* Language Transcript Toggle */}
-                <div className="flex items-center bg-stone-900 rounded-lg p-1 border border-white/10 text-xs">
+                {/* Big Play / Pause Button */}
+                <div className="flex items-center gap-4 pt-2">
                   <button
-                    type="button"
-                    onClick={() => setLangTab('hi')}
-                    className={`px-2.5 py-1 rounded-md font-bold transition-all ${
-                      langTab === 'hi' ? 'bg-amber-500 text-stone-950' : 'text-stone-400 hover:text-white'
-                    }`}
-                  >
-                    हिन्दी
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setLangTab('en')}
-                    className={`px-2.5 py-1 rounded-md font-bold transition-all ${
-                      langTab === 'en' ? 'bg-amber-500 text-stone-950' : 'text-stone-400 hover:text-white'
-                    }`}
-                  >
-                    English
-                  </button>
-                </div>
-              </div>
-
-              {/* Dynamic Animated Waveform */}
-              <div className="flex items-end justify-between gap-1.5 h-16 px-2 py-2 bg-stone-950/60 rounded-xl border border-white/5 overflow-hidden">
-                {activeStory.waveform.map((height, i) => {
-                  const isPassed = (i / activeStory.waveform.length) * 100 <= progress;
-                  return (
-                    <motion.div
-                      key={i}
-                      animate={{
-                        height: isPlaying ? [height * 0.4 + '%', height + '%', height * 0.6 + '%'] : height + '%'
-                      }}
-                      transition={{
-                        repeat: Infinity,
-                        repeatType: 'reverse',
-                        duration: 0.5 + (i % 5) * 0.1,
-                        ease: 'easeInOut'
-                      }}
-                      className={`w-full rounded-full transition-colors ${
-                        isPassed ? 'bg-amber-400 shadow-sm shadow-amber-400/50' : 'bg-stone-700'
-                      }`}
-                    />
-                  );
-                })}
-              </div>
-
-              {/* Spoken Transcript Box */}
-              <div className="p-4 bg-white/5 rounded-xl border border-white/10 text-xs sm:text-sm leading-relaxed text-stone-200 font-sans italic relative">
-                <span className="text-amber-400 font-bold not-italic mr-1.5">“</span>
-                {langTab === 'hi' ? activeStory.audioTextHindi : activeStory.audioTextEnglish}
-                <span className="text-amber-400 font-bold not-italic ml-1.5">”</span>
-              </div>
-
-              {/* Playback Controls Bar */}
-              <div className="flex items-center justify-between pt-2">
-                <div className="flex items-center gap-3">
-                  <button
-                    type="button"
                     onClick={handleTogglePlay}
-                    className="w-12 h-12 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-bold flex items-center justify-center shadow-lg hover:scale-105 transition-all"
+                    className="w-14 h-14 rounded-2xl bg-gradient-to-r from-amber-600 to-[#C85A32] text-white flex items-center justify-center shadow-lg hover:scale-105 transition-all"
                   >
-                    {isPlaying ? <Pause className="w-5 h-5 fill-stone-950" /> : <Play className="w-5 h-5 ml-0.5 fill-stone-950" />}
+                    {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 ml-0.5" />}
                   </button>
+
+                  <div className="flex-1">
+                    <div className="text-xs font-bold text-stone-900 dark:text-stone-100">
+                      {isPlaying ? (lang === 'hi' ? 'सुना जा रहा है...' : 'Now Playing...') : (lang === 'hi' ? 'कहानी सुनें' : 'Click to Play')}
+                    </div>
+                    <div className="text-[11px] text-stone-400 font-mono">
+                      {activeStory.duration} • {lang === 'hi' ? 'ध्वनि आलेख' : 'Audio Story'}
+                    </div>
+                  </div>
 
                   <button
-                    type="button"
-                    onClick={() => {
-                      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-                      setIsPlaying(false);
-                      setProgress(0);
-                    }}
-                    className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-stone-400 hover:text-white transition-colors"
-                    title="Restart Audio"
+                    onClick={() => setIsMuted(!isMuted)}
+                    className="p-2.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
+                    title={isMuted ? 'Unmute' : 'Mute'}
                   >
-                    <RotateCcw className="w-4 h-4" />
+                    {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
                   </button>
-                </div>
-
-                <div className="flex items-center gap-2 text-xs font-mono text-stone-400">
-                  <span className="text-amber-400 font-bold">
-                    {Math.floor((progress / 100) * 48)}s
-                  </span>
-                  <span>/</span>
-                  <span>{activeStory.duration}</span>
                 </div>
               </div>
             </div>
+
+            {/* Right: Live Dynamic Waveform & Clean Transcript */}
+            <div className="lg:col-span-8 space-y-6">
+              
+              {/* Animated Waveform Visualizer */}
+              <div className="p-6 rounded-2xl bg-white dark:bg-[#1C263A] border border-amber-100 dark:border-stone-700 shadow-sm flex items-center justify-between gap-1.5 h-24 px-6 overflow-hidden">
+                {activeStory.waveform.map((bar, idx) => (
+                  <motion.div
+                    key={idx}
+                    animate={{
+                      height: isPlaying ? [bar * 0.4, bar * 0.8, bar * 0.5] : `${bar * 0.5}%`,
+                      backgroundColor: isPlaying && idx < (progress / 100) * activeStory.waveform.length
+                        ? '#C85A32'
+                        : '#CBD5E1'
+                    }}
+                    transition={{
+                      duration: 0.4,
+                      repeat: isPlaying ? Infinity : 0,
+                      repeatType: 'reverse',
+                      delay: idx * 0.03
+                    }}
+                    className="flex-1 rounded-full min-h-[4px]"
+                  />
+                ))}
+              </div>
+
+              {/* Clean Single Language Transcript */}
+              <div className="p-6 rounded-2xl bg-white/70 dark:bg-[#1C263A]/70 border border-stone-200 dark:border-stone-700 space-y-2">
+                <div className="text-[11px] font-bold uppercase tracking-wider text-stone-400">
+                  {lang === 'hi' ? 'आधिकारिक आलेख' : 'Artisan Narrative Transcript'}
+                </div>
+                <p className="text-sm sm:text-base text-stone-800 dark:text-stone-200 leading-relaxed font-serif italic">
+                  "{lang === 'hi' ? activeStory.audioTextHindi : activeStory.audioTextEnglish}"
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </ScrollReveal>

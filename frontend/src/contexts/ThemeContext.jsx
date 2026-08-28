@@ -6,11 +6,11 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     try {
       const saved = localStorage.getItem('craftlink_theme');
-      if (saved) return saved;
+      if (saved === 'dark' || saved === 'light') return saved;
     } catch (e) {
       console.warn('Storage access restricted:', e);
     }
-    return 'light';
+    return 'light'; // Default to light (warm heritage craft theme)
   });
 
   useEffect(() => {
@@ -18,8 +18,10 @@ export const ThemeProvider = ({ children }) => {
       const root = document.documentElement;
       if (theme === 'dark') {
         root.classList.add('dark');
+        document.body.classList.add('dark');
       } else {
         root.classList.remove('dark');
+        document.body.classList.remove('dark');
       }
       localStorage.setItem('craftlink_theme', theme);
     } catch (e) {

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ThemeProvider } from './contexts/ThemeContext';
+import ErrorBoundary from './components/ErrorBoundary';
 
 import MainLayout from './layouts/MainLayout';
 import LandingPage from './pages/LandingPage';
@@ -25,12 +26,13 @@ function ProtectedArtisanRoute({ children }) {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <LanguageProvider>
-          <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<MainLayout />}>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <AuthProvider>
+          <LanguageProvider>
+            <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<MainLayout />}>
               {/* Public Routes */}
               <Route index element={<LandingPage />} />
               <Route path="marketplace" element={<MarketplacePage />} />
@@ -73,13 +75,14 @@ export default function App() {
                 }
               />
 
-              {/* Fallback */}
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </LanguageProvider>
-    </AuthProvider>
-    </ThemeProvider>
+            {/* Fallback */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </LanguageProvider>
+  </AuthProvider>
+  </ThemeProvider>
+  </ErrorBoundary>
   );
 }
