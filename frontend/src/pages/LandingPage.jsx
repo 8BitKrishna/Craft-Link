@@ -208,50 +208,56 @@ export default function LandingPage() {
         </ScrollReveal>
       </section>
 
-      {/* 4. IMPACT METRICS */}
+      {/* 4. IMPACT METRICS (Clear, Perfectly Boxed Numbers) */}
       <section className="max-w-6xl mx-auto px-6 sm:px-8">
         <ScrollReveal>
-          <div className="bg-gradient-to-r from-[#1E4D2B] via-emerald-950 to-[#1E4D2B] dark:from-[#0E2015] dark:via-[#09140D] dark:to-[#0E2015] rounded-3xl p-10 sm:p-16 text-white shadow-xl border border-emerald-800/40">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-emerald-800/80">
-              <div className="pt-4 md:pt-0">
-                <div className="text-3xl sm:text-5xl font-black font-serif text-amber-300">
+          <div className="bg-gradient-to-r from-[#1E4D2B] via-emerald-950 to-[#1E4D2B] dark:from-[#0E2015] dark:via-[#09140D] dark:to-[#0E2015] rounded-3xl p-8 sm:p-12 text-white shadow-xl border border-emerald-800/40">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              
+              {/* Box 1: Artisans Onboarded */}
+              <div className="p-6 sm:p-8 rounded-2xl bg-black/20 dark:bg-black/40 border border-emerald-700/30 backdrop-blur-xs flex flex-col items-center justify-center text-center space-y-2">
+                <div className="text-2xl sm:text-4xl font-extrabold font-heading text-amber-300 tracking-tight tabular-nums">
                   <AnimatedCounter from={0} to={3450} suffix="+" />
                 </div>
-                <div className="text-xs sm:text-sm text-emerald-100 font-medium mt-3 flex items-center justify-center gap-1.5 font-sans">
-                  <Users className="w-4 h-4" />
+                <div className="text-xs text-emerald-100 font-medium flex items-center justify-center gap-1.5 font-sans">
+                  <Users className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span>Artisans Onboarded</span>
                 </div>
               </div>
 
-              <div className="pt-4 md:pt-0">
-                <div className="text-3xl sm:text-5xl font-black font-serif text-amber-300">
+              {/* Box 2: Heritage GI Clusters */}
+              <div className="p-6 sm:p-8 rounded-2xl bg-black/20 dark:bg-black/40 border border-emerald-700/30 backdrop-blur-xs flex flex-col items-center justify-center text-center space-y-2">
+                <div className="text-2xl sm:text-4xl font-extrabold font-heading text-amber-300 tracking-tight tabular-nums">
                   <AnimatedCounter from={0} to={28} suffix="+" />
                 </div>
-                <div className="text-xs sm:text-sm text-emerald-100 font-medium mt-3 flex items-center justify-center gap-1.5 font-sans">
-                  <Award className="w-4 h-4" />
+                <div className="text-xs text-emerald-100 font-medium flex items-center justify-center gap-1.5 font-sans">
+                  <Award className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span>Heritage GI Clusters</span>
                 </div>
               </div>
 
-              <div className="pt-4 md:pt-0">
-                <div className="text-3xl sm:text-5xl font-black font-serif text-amber-300">
+              {/* Box 3: Avg Monthly Uplift */}
+              <div className="p-6 sm:p-8 rounded-2xl bg-black/20 dark:bg-black/40 border border-emerald-700/30 backdrop-blur-xs flex flex-col items-center justify-center text-center space-y-2">
+                <div className="text-2xl sm:text-4xl font-extrabold font-heading text-amber-300 tracking-tight tabular-nums">
                   <AnimatedCounter from={0} to={12800} prefix="₹" suffix="+" />
                 </div>
-                <div className="text-xs sm:text-sm text-emerald-100 font-medium mt-3 flex items-center justify-center gap-1.5 font-sans">
-                  <TrendingUp className="w-4 h-4" />
+                <div className="text-xs text-emerald-100 font-medium flex items-center justify-center gap-1.5 font-sans">
+                  <TrendingUp className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span>Avg. Monthly Uplift</span>
                 </div>
               </div>
 
-              <div className="pt-4 md:pt-0">
-                <div className="text-3xl sm:text-5xl font-black font-serif text-amber-300">
+              {/* Box 4: AI Accuracy */}
+              <div className="p-6 sm:p-8 rounded-2xl bg-black/20 dark:bg-black/40 border border-emerald-700/30 backdrop-blur-xs flex flex-col items-center justify-center text-center space-y-2">
+                <div className="text-2xl sm:text-4xl font-extrabold font-heading text-amber-300 tracking-tight tabular-nums">
                   <AnimatedCounter from={0} to={98} suffix="%" />
                 </div>
-                <div className="text-xs sm:text-sm text-emerald-100 font-medium mt-3 flex items-center justify-center gap-1.5 font-sans">
-                  <Sparkles className="w-4 h-4" />
+                <div className="text-xs text-emerald-100 font-medium flex items-center justify-center gap-1.5 font-sans">
+                  <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span>AI Extraction Accuracy</span>
                 </div>
               </div>
+
             </div>
           </div>
         </ScrollReveal>
