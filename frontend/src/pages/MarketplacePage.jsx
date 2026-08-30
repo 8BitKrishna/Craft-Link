@@ -71,7 +71,7 @@ export default function MarketplacePage() {
             craft_type: selectedCraft || null,
             region: selectedRegion || null,
             sort_by: sortBy,
-            limit: 50
+            limit: 200
           });
           setProducts(res.data && res.data.length > 0 ? res.data : FALLBACK_PRODUCTS);
           setCurrentIntent(null);

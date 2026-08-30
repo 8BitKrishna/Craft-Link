@@ -16,7 +16,7 @@ def get_products(
     artisan_id: Optional[str] = None,
     keyword: Optional[str] = None,
     sort_by: Optional[str] = 'newest',
-    limit: int = 50,
+    limit: int = 200,
     offset: int = 0
 ):
     products = db.get_products(
